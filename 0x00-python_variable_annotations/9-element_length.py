@@ -17,7 +17,7 @@ def element_length(lst: List[str]) -> List[Tuple[str, int]]:
         lst (List[str]): Input list of string
 
     Returns:
-        List[Tuple[str, int]]: List of tuples where the first element 
+        List[Tuple[str, int]]: List of tuples where the first element
         is a string from the input list and the second element is its length
     """
     return [(i, len(i)) for i in lst]

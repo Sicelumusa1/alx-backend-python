@@ -60,6 +60,7 @@ class TestGetJson(unittest.TestCase):
     """
     A test case class for the 'get_json' function
     """
+
     @patch('requests.get')
     def test_get_json(self, mock_request_get):
         """

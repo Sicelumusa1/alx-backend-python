@@ -34,7 +34,7 @@ class TestAccessNestedMap(unittest.TestCase):
         """
         result = access_nested_map(nested_map, path)
         self.assertEqual(result, expected_result)
-    
+
     @parameterized.expand([
         ({}, ("a",), KeyError),
         ({"a": 1}, ("a", "b"), KeyError),
@@ -48,7 +48,8 @@ class TestAccessNestedMap(unittest.TestCase):
         Args:
             nested_map (dict):nested dictionery to be accessed
             path (tuple): path to the nested key
-            expected_exception: expected exception when accessing the nested key
+            expected_exception: expected exception when accessing
+            the nested key
         """
         with self.assertRaises(expected_exception) as context:
             access_nested_map(nested_map, path)
@@ -85,7 +86,7 @@ class TestGetJson(unittest.TestCase):
         result1 = get_json(test_url1)
         result2 = get_json(test_url2)
 
-        # Assert that requests.get was called exactly once with 
+        # Assert that requests.get was called exactly once with
         # the correct URL
         mock_request_get.assert_has_calls([
             unittest.mock.call(test_url1),
@@ -95,6 +96,7 @@ class TestGetJson(unittest.TestCase):
         # Assert that the output matches the expected payload
         self.assertEqual(result1, test_payload1)
         self.assertEqual(result2, test_payload2)
+
 
 class TestMemoize(unittest.TestCase):
     """
@@ -139,6 +141,3 @@ class TestMemoize(unittest.TestCase):
                 # Assert that the results are equal
                 self.assertEqual(result1, 42)
                 self.assertEqual(result2, 42)
-
-
-

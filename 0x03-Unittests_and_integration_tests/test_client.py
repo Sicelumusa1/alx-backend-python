@@ -101,7 +101,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         cls.mock_requests_get = cls.get_patcher.start()
         cls.mock_requests_get.side_effect = [
             org_payload,
-            rrepos_payload,
+            repos_payload,
         ]
 
     @classmethod
@@ -124,7 +124,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         result = client.public_repos()
 
         # Assert that the result matches the expected repos
-        self.assertEqual(result, self.expected_repos)
+        self.assertEqual(result, expected_repos)
 
     def test_public_repos_with_license(self):
         """
@@ -138,4 +138,4 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         result = client.public_repos(license="apache-2.0")
 
         # Assert that the result matches the expected apache2_repos
-        self.assertEqual(result, self.apache2_repos)
+        self.assertEqual(result, apache2_repos)

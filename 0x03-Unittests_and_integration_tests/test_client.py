@@ -97,45 +97,45 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         to return example payloads.
         """
         # Mock request.get to return example payloads
-        cls.get_patcher = patch('request.get')
+        cls.get_patcher = patch('requests.get')
         cls.mock_requests_get = cls.get_patcher.start()
         cls.mock_requests_get.side_effect = [
             org_payload,
             rrepos_payload,
         ]
 
-        @classmethod
-        def tearDownClass(cls):
-            """
-            Clean up after the test class by stopping the patching of
-            'request.get'
-            """
-            cls.get_patcher.stop()
+    @classmethod
+    def tearDownClass(cls):
+        """
+        Clean up after the test class by stopping the patching of
+        'request.get'
+        """
+        cls.get_patcher.stop()
 
-        def test_public_repos(self):
-            """
-            Test the 'public_repos' method of GithubOrgClient without
-            specifying a license
-            """
-            org_name = "example_org"
-            client = GithubOrgClient(org_name)
+    def test_public_repos(self):
+        """
+        Test the 'public_repos' method of GithubOrgClient without
+        specifying a license
+        """
+        org_name = "example_org"
+        client = GithubOrgClient(org_name)
 
-            # Call the method under test
-            result = client.public_repos()
+        # Call the method under test
+        result = client.public_repos()
 
-            # Assert that the result matches the expected repos
-            self.assertEqual(result, expected_repos)
+        # Assert that the result matches the expected repos
+        self.assertEqual(result, expected_repos)
 
-        def test_public_repos_with_license(self):
-            """
-            Test the 'public_repos' method of GithubOrgClient with a
-            specific license
-            """
-            org_name = "example_org"
-            client = GithubOrgClient(org_name)
+    def test_public_repos_with_license(self):
+        """
+        Test the 'public_repos' method of GithubOrgClient with a
+        specific license
+        """
+        org_name = "example_org"
+        client = GithubOrgClient(org_name)
 
-            # Call the method with a specific license
-            result = client.public_repos(license="apache-2.0")
+        # Call the method with a specific license
+        result = client.public_repos(license="apache-2.0")
 
-            # Assert that the result matches the expected apache2_repos
-            seld.assertEqual(result, apache2_repos)
+        # Assert that the result matches the expected apache2_repos
+        seld.assertEqual(result, apache2_repos)
